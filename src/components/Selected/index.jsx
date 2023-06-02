@@ -62,6 +62,7 @@ const Selected = ({ options, placeholder }) => {
       borderBottomColor: menuIsOpen ? 'rgba(255, 255, 255, 0.3)' : '#fff',
       position: 'relative',
       height: '45px',
+      cursor: 'pointer',
       '&:hover': {
         borderColor: 'none',
       },

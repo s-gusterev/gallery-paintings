@@ -10,7 +10,13 @@ const InputYears = () => {
       <div className={styles.titleContainer} onClick={() => setOpen(!open)}>
         <span className={styles.title}>Created</span>
       </div>
-      <div className={styles.inputsContainer}>
+      <div
+        className={
+          open
+            ? `${styles.inputsContainer} ${styles.inputsContainerOpen}`
+            : styles.inputsContainer
+        }
+      >
         <input
           className={styles.input}
           type='number'

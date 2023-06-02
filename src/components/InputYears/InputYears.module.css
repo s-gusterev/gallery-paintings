@@ -1,16 +1,16 @@
 .search {
   width: 265px;
   height: 45px;
-  background: #0c0c0c;
+  background-color: #0c0c0c;
   border: 1px solid #fff;
   border-radius: 8px;
   box-sizing: border-box;
   position: relative;
   transition: height 300ms ease-in-out;
-  overflow: hidden;
-  position: absolute;
+  /* overflow: hidden; */
+  /* position: absolute;
   right: 0;
-  top: 0;
+  top: 0; */
 }
 
 .titleContainer {
@@ -19,7 +19,10 @@
 }
 
 .searchOpen {
-  height: 130px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+  /* height: 130px; */
 }
 
 .search::before {
@@ -46,6 +49,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  left: -1px;
+  top: 44px;
+  background-color: #0c0c0c;
+  width: 265px;
+  box-sizing: border-box;
+  border: 1px solid #fff;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top: 0;
+  visibility: hidden;
+}
+
+.inputsContainerOpen {
+  visibility: visible;
 }
 
 .input {
