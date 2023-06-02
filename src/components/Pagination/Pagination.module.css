@@ -1,0 +1,79 @@
+.pagination {
+  padding-bottom: 97px;
+  display: flex;
+}
+
+.buttonStart,
+.buttonEnd,
+.buttonNumber,
+.buttonLeft,
+.buttonRight {
+  width: 41px;
+  height: 41px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.buttonStart:hover:not(.buttonStart:disabled),
+.buttonEnd:hover:not(.buttonEnd:disabled),
+.buttonNumber:hover:not(.buttonNumberActive),
+.buttonLeft:hover:not(.buttonLeft:disabled),
+.buttonRight:hover:not(.buttonRight:disabled) {
+  background-color: #464646;
+  color: #fff;
+}
+
+.buttonStart {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.buttonStart:disabled,
+.buttonEnd:disabled,
+.buttonLeft:disabled,
+.buttonRight:disabled {
+  cursor: default;
+  border-color: rgba(255, 255, 255, 0.3);
+  border-width: 2px;
+}
+
+.buttonStart:disabled svg path,
+.buttonEnd:disabled svg path,
+.buttonLeft:disabled svg path,
+.buttonRight:disabled svg path {
+  fill-opacity: 0.3;
+}
+
+.buttonEnd {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-left: 0;
+}
+
+.buttonNumber {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  border-left: 0;
+}
+
+.buttonNumberActive {
+  color: #000;
+  background-color: #fff;
+}
+
+.buttonLeft {
+  border-right: 0;
+  border-left: 0;
+}
+
+.buttonRight {
+  border-left: 0;
+}
