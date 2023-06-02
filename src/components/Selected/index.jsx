@@ -1,19 +1,8 @@
 import styles from './Selected.module.css';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Select, { components } from 'react-select';
 
-const Selected = () => {
-  const options = [
-    { value: 'blues', label: 'Salvador dali' },
-    { value: 'rock', label: 'Vincent van gogh' },
-    { value: 'jazz', label: 'Claude monet' },
-    { value: 'orchestra', label: 'Victor vasnetsov' },
-    { value: 'blues', label: 'Salvador dali' },
-    { value: 'rock', label: 'Vincent van gogh' },
-    { value: 'jazz', label: 'Claude monet' },
-    { value: 'orchestra', label: 'Victor vasnetsov' },
-  ];
-
+const Selected = ({ options, placeholder }) => {
   const DropdownIndicator = (props) => {
     return (
       <components.DropdownIndicator {...props}>
@@ -49,7 +38,7 @@ const Selected = () => {
       '&:last-child': {
         marginBottom: '20px',
       },
-      '&:first-child': {
+      '&:first-of-type': {
         marginTop: '20px',
       },
 
@@ -184,10 +173,16 @@ const Selected = () => {
         options={options}
         styles={customStyles}
         components={{ DropdownIndicator }}
-        placeholder='Author'
+        isSearchable={false}
+        placeholder={placeholder}
       />
     </div>
   );
+};
+
+Selected.propTypes = {
+  options: PropTypes.array.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default Selected;
