@@ -5,7 +5,11 @@ const Card = ({ image, title, created, location, author }) => {
   return (
     <article className={styles.card}>
       <div className={styles.imageContainer}>
-        <img className={styles.image} src={image} alt={title} />
+        <img
+          className={styles.image}
+          src={`https://test-front.framework.team${image}`}
+          alt={title}
+        />
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>{title}</h2>
