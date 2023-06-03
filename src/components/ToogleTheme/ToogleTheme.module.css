@@ -1,11 +1,14 @@
 .button {
+  display: grid;
+  place-items: center;
   border: 0;
   background-color: transparent;
   width: 20px;
   height: 20px;
   padding: 0;
-  background-image: url(../../assets/toogle-theme.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
   cursor: pointer;
+}
+
+.button svg path {
+  fill: var(--color-light);
 }

@@ -1,0 +1,10 @@
+.app {
+  background-color: var(--color-dark);
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-inline: 20px;
+}

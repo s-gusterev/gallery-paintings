@@ -11,7 +11,7 @@
   width: 41px;
   height: 41px;
   background-color: transparent;
-  border: 1px solid #fff;
+  border: 1px solid var(--color-light);
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -24,7 +24,7 @@
 .buttonLeft:hover:not(.buttonLeft:disabled),
 .buttonRight:hover:not(.buttonRight:disabled) {
   background-color: #464646;
-  color: #fff;
+  color: var(--color-light);
 }
 
 .buttonStart {
@@ -60,13 +60,13 @@
   font-size: 18px;
   line-height: 20px;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--color-light);
   border-left: 0;
 }
 
 .buttonNumberActive {
-  color: #000;
-  background-color: #fff;
+  color: var(--color-dark);
+  background-color: var(--color-light);
 }
 
 .buttonLeft {
