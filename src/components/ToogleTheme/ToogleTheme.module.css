@@ -10,5 +10,5 @@
 }
 
 .button svg path {
-  fill: var(--color-light);
+  fill: var(--color-secondary);
 }

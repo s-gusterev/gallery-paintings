@@ -11,7 +11,7 @@
   width: 41px;
   height: 41px;
   background-color: transparent;
-  border: 1px solid var(--color-light);
+  border: 1px solid var(--color-secondary);
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -24,7 +24,7 @@
 .buttonLeft:hover:not(.buttonLeft:disabled),
 .buttonRight:hover:not(.buttonRight:disabled) {
   background-color: #464646;
-  color: var(--color-light);
+  color: var(--color-secondary);
 }
 
 .buttonStart {
@@ -37,14 +37,22 @@
 .buttonLeft:disabled,
 .buttonRight:disabled {
   cursor: default;
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: var(--color-secondary-100);
   border-width: 2px;
+}
+
+.buttonStart svg path,
+.buttonEnd svg path,
+.buttonLeft svg path,
+.buttonRight svg path {
+  fill: var(--color-secondary);
 }
 
 .buttonStart:disabled svg path,
 .buttonEnd:disabled svg path,
 .buttonLeft:disabled svg path,
 .buttonRight:disabled svg path {
+  fill: var(--color-secondary);
   fill-opacity: 0.3;
 }
 
@@ -60,13 +68,13 @@
   font-size: 18px;
   line-height: 20px;
   text-transform: uppercase;
-  color: var(--color-light);
+  color: var(--color-secondary);
   border-left: 0;
 }
 
 .buttonNumberActive {
-  color: var(--color-dark);
-  background-color: var(--color-light);
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
 }
 
 .buttonLeft {

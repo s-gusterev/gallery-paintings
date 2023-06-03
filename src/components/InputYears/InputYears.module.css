@@ -1,12 +1,18 @@
 .search {
   width: 265px;
   height: 45px;
-  background-color: #0c0c0c;
-  border: 1px solid var(--color-light);
+  background-color: var(--color-bg-input);
+  border: 1px solid var(--color-secondary);
   border-radius: 8px;
   box-sizing: border-box;
   position: relative;
   transition: height 300ms ease-in-out;
+}
+
+.search svg {
+  position: absolute;
+  right: 15px;
+  top: 19px;
 }
 
 .titleContainer {
@@ -20,7 +26,7 @@
   border-bottom: 0;
 }
 
-.search::before {
+/* .search::before {
   content: '';
   position: absolute;
   width: 10px;
@@ -29,14 +35,14 @@
   background-size: contain;
   right: 15px;
   top: 19px;
-}
+} */
 
 .title {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 15px;
-  color: var(--color-light);
+  color: var(--color-secondary);
 }
 
 .inputsContainer {
@@ -47,10 +53,10 @@
   position: absolute;
   left: -1px;
   top: 44px;
-  background-color: #0c0c0c;
+  background-color: var(--color-bg-input);
   width: 265px;
   box-sizing: border-box;
-  border: 1px solid var(--color-light);
+  border: 1px solid var(--color-secondary);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   border-top: 0;
@@ -65,7 +71,7 @@
   width: 95px;
   height: 45px;
   padding: 15px;
-  background-color: var(--color-light);
+  background-color: var(--color-bg-input-year);
   border-radius: 8px;
   box-sizing: border-box;
   border: 0;
@@ -79,5 +85,5 @@
 .line {
   width: 12px;
   height: 1px;
-  background-color: var(--color-light);
+  background-color: var(--color-secondary);
 }

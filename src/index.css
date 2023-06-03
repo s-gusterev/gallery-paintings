@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
-  --color-dark: #000;
-  --color-light: #fff;
+  --color-primary: #000;
+  --color-secondary: #fff;
+  --color-bg-input: #0c0c0c;
+  --color-bg-input-year: var(--color-secondary);
+  --color-secondary-100: rgba(255, 255, 255, 0.3);
+  
 }
 
 #light {
-  --color-dark: #fff;
-  --color-light: #000;
+  --color-primary: #fff;
+  --color-secondary: #000;
+  --color-bg-input: #fff;
+  --color-bg-input-year: #efefef;
+  --color-secondary-100: rgba(0, 0, 0, 0.3);
+ 
 }

@@ -15,8 +15,7 @@ const Selected = ({ options, placeholder }) => {
         >
           <path
             d='M9.67861 1.8337L5.77064 5.68539C5.34503 6.10487 4.65497 6.10487 4.22936 5.68539L0.321394 1.8337C-0.365172 1.15702 0.121082 -8.3659e-08 1.09203 0L8.90797 6.73452e-07C9.87892 7.57113e-07 10.3652 1.15702 9.67861 1.8337Z'
-            fill='white'
-            fillOpacity='0.3'
+            fill='var(--color-font-input)'
           />
         </svg>
       </components.DropdownIndicator>
@@ -26,8 +25,8 @@ const Selected = ({ options, placeholder }) => {
   const customStyles = {
     option: (defaultStyles) => ({
       ...defaultStyles,
-      color: 'var(--color-light)',
-      backgroundColor: '#0C0C0C',
+      color: 'var(--color-secondary)',
+      backgroundColor: 'var(--color-bg-input)',
       fontFamily: '"Roboto", Arial, Helvetica, sans-serif',
       fontWeight: '500',
       fontSize: '16px',
@@ -43,18 +42,18 @@ const Selected = ({ options, placeholder }) => {
       },
 
       '&:hover': {
-        backgroundColor: 'var(--color-light)',
-        color: 'var(--color-dark)',
+        backgroundColor: 'var(--color-secondary)',
+        color: 'var(--color-primary)',
       },
     }),
 
     control: (defaultStyles, { menuIsOpen }) => ({
       ...defaultStyles,
-      color: 'var(--color-light)',
-      backgroundColor: '#0C0C0C',
+      color: 'var(--color-secondary)',
+      backgroundColor: 'var(--color-bg-input)',
       boxShadow: 'none',
       width: '265px',
-      borderColor: 'var(--color-light)',
+      borderColor: 'var(--color-secondary)',
       borderTopLeftRadius: '8px',
       borderTopRightRadius: '8px',
       borderBottomLeftRadius: menuIsOpen ? 0 : '8px',
@@ -72,7 +71,7 @@ const Selected = ({ options, placeholder }) => {
         content: '""',
         width: '1px',
         height: '3px',
-        backgroundColor: 'var(--color-light)',
+        backgroundColor: 'var(--color-secondary)',
         position: 'absolute',
         left: '-1px',
         top: '43px',
@@ -83,7 +82,7 @@ const Selected = ({ options, placeholder }) => {
         content: '""',
         width: '1px',
         height: '3px',
-        backgroundColor: 'var(--color-light)',
+        backgroundColor: 'var(--color-secondary)',
         position: 'absolute',
         right: '-1px',
         top: '43px',
@@ -93,7 +92,7 @@ const Selected = ({ options, placeholder }) => {
     }),
     singleValue: (defaultStyles) => ({
       ...defaultStyles,
-      color: 'var(--color-light)',
+      color: 'var(--color-secondary)',
     }),
     placeholder: (defaultStyles) => ({
       ...defaultStyles,
@@ -119,7 +118,7 @@ const Selected = ({ options, placeholder }) => {
       ...defaultStyles,
       padding: '0',
       margin: '0',
-      color: 'var(--color-light)',
+      color: 'var(--color-secondary)',
       fontFamily: '"Roboto", Arial, Helvetica, sans-serif',
       fontSize: '13px',
       fontWeight: '400',
@@ -139,14 +138,14 @@ const Selected = ({ options, placeholder }) => {
       marginTop: 0,
       border: 0,
       borderRadius: '8px',
-      background: '#0C0C0C',
+      background: 'var(--color-bg-input)',
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
       borderBottomLeftRadius: '8px',
       borderBottomRightRadius: '8px',
-      borderBottomColor: 'var(--color-light)',
-      borderLeftColor: 'var(--color-light)',
-      borderRightColor: 'var(--color-light)',
+      borderBottomColor: 'var(--color-secondary)',
+      borderLeftColor: 'var(--color-secondary)',
+      borderRightColor: 'var(--color-secondary)',
       borderWidth: '1px',
       borderStyle: 'solid',
       overflow: 'hidden',
