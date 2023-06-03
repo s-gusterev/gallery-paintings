@@ -20,6 +20,9 @@ function App() {
         .then((res) => {
           // console.log(res.data);
           setCards(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     };
     const getAuthors = async () => {
@@ -33,6 +36,9 @@ function App() {
             return arr.push({ value: author.id, label: author.name });
           });
           setAuthors(arr);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     };
 
@@ -47,6 +53,9 @@ function App() {
             return arr.push({ value: location.id, label: location.location });
           });
           setLocations(arr);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     };
     getPaintings();
