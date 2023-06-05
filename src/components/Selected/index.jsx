@@ -2,7 +2,7 @@ import styles from './Selected.module.css';
 import PropTypes from 'prop-types';
 import Select, { components } from 'react-select';
 
-const Selected = ({ options, placeholder }) => {
+const Selected = ({ options, placeholder, onChange }) => {
   const DropdownIndicator = (props) => {
     return (
       <components.DropdownIndicator {...props}>
@@ -177,6 +177,7 @@ const Selected = ({ options, placeholder }) => {
         components={{ DropdownIndicator }}
         isSearchable={false}
         placeholder={placeholder}
+        onChange={onChange}
       />
     </div>
   );
@@ -185,6 +186,7 @@ const Selected = ({ options, placeholder }) => {
 Selected.propTypes = {
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Selected;

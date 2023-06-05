@@ -13,11 +13,14 @@ function App() {
   const [authors, setAuthors] = useState([]);
   const [locations, setLocations] = useState([]);
 
+  console.log(cards);
+
   useEffect(() => {
     const getPaintings = async () => {
       await axios
         .get(
-          'https://test-front.framework.team/paintings?_limit=12&_page=1&authorId=1'
+          'https://test-front.framework.team/paintings?_limit=12&_page=1'
+          // 'https://test-front.framework.team/paintings?_limit=12&_page=1&authorId=1'
         )
         .then((res) => {
           // console.log(res.data);
@@ -67,7 +70,7 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <CardsContext.Provider value={{ cards, locations, authors }}>
+      <CardsContext.Provider value={{ cards, setCards, locations, authors }}>
         <div className={styles.app} id={theme}>
           <div className={styles.container}>
             <Header />
