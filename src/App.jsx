@@ -16,7 +16,9 @@ function App() {
   useEffect(() => {
     const getPaintings = async () => {
       await axios
-        .get('https://test-front.framework.team/paintings?_limit=12&_page=1')
+        .get(
+          'https://test-front.framework.team/paintings?_limit=12&_page=1&authorId=1'
+        )
         .then((res) => {
           // console.log(res.data);
           setCards(res.data);
@@ -58,9 +60,9 @@ function App() {
           console.log(err);
         });
     };
-    getPaintings();
     getAuthors();
     getLocation();
+    getPaintings();
   }, []);
 
   return (
