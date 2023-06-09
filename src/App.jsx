@@ -1,35 +1,86 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import styles from './App.module.css';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import ThemeContext from './contexts/ThemeContext';
+import CardsContext from './contexts/CardsContext';
+import Header from './components/Header';
+import Main from './components/Main';
+import Pagination from './components/Pagination';
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme, setTheme] = useState('dark');
+
+  const [cards, setCards] = useState([]);
+  const [authors, setAuthors] = useState([]);
+  const [locations, setLocations] = useState([]);
+
+  console.log(cards);
+
+  useEffect(() => {
+    const getPaintings = async () => {
+      await axios
+        .get(
+          'https://test-front.framework.team/paintings?_limit=12&_page=1'
+          // 'https://test-front.framework.team/paintings?_limit=12&_page=1&authorId=1'
+        )
+        .then((res) => {
+          // console.log(res.data);
+          setCards(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    const getAuthors = async () => {
+      const arr = [];
+      await axios
+        .get('https://test-front.framework.team/authors')
+        .then((res) => {
+          // console.log(res.data);
+          let result = res.data;
+          result.map((author) => {
+            return arr.push({ value: author.id, label: author.name });
+          });
+          setAuthors(arr);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    const getLocation = async () => {
+      const arr = [];
+      await axios
+        .get('https://test-front.framework.team/locations')
+        .then((res) => {
+          // console.log(res.data);
+          let result = res.data;
+          result.map((location) => {
+            return arr.push({ value: location.id, label: location.location });
+          });
+          setLocations(arr);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getAuthors();
+    getLocation();
+    getPaintings();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <CardsContext.Provider value={{ cards, setCards, locations, authors }}>
+        <div className={styles.app} id={theme}>
+          <div className={styles.container}>
+            <Header />
+            <Main />
+            <Pagination />
+          </div>
+        </div>
+      </CardsContext.Provider>
+    </ThemeContext.Provider>
+  );
 }
 
-export default App
+export default App;

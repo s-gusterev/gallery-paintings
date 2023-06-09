@@ -1,0 +1,9 @@
+.main {
+  margin-bottom: 40px;
+}
+.grid {
+  margin-top: 45px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}

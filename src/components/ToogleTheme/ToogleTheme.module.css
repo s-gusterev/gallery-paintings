@@ -1,0 +1,14 @@
+.button {
+  display: grid;
+  place-items: center;
+  border: 0;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.button svg path {
+  fill: var(--color-secondary);
+}
