@@ -11,15 +11,15 @@ const Search = () => {
 
   const [selectedAuthor, setSelectedAuthor] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [yearGte, setYearGte] = useState('0');
+  const [yearLte, setYearLte] = useState('2023');
 
   const handleChangeAuthor = (selectedOption) => {
     setSelectedAuthor(selectedOption.value);
-    console.log(`Option selected:`, selectedOption);
   };
 
   const handleChangeLocation = (selectedOption) => {
     setSelectedLocation(selectedOption.value);
-    console.log(`Option selected:`, selectedOption);
   };
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const Search = () => {
           `https://test-front.framework.team/paintings?_limit=12&_page=1&authorId=${selectedAuthor}`
         )
         .then((res) => {
-          // console.log(res.data);
           setCards(res.data);
         })
         .catch((err) => {
@@ -47,7 +46,6 @@ const Search = () => {
           `https://test-front.framework.team/paintings?_limit=12&_page=1&locationId=${selectedLocation}`
         )
         .then((res) => {
-          // console.log(res.data);
           setCards(res.data);
         })
         .catch((err) => {
@@ -57,6 +55,34 @@ const Search = () => {
 
     getPaintingsLocation();
   }, [selectedLocation, setCards]);
+
+  const handleChangeInputGte = async (event) => {
+    setYearGte(event.target.value);
+    await axios
+      .get(
+        `https://test-front.framework.team/paintings?_limit=12&_page=1&created_gte=${yearGte}&created_lte=${yearLte}`
+      )
+      .then((res) => {
+        setCards(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleChangeInputLte = async (event) => {
+    setYearLte(event.target.value);
+    await axios
+      .get(
+        `https://test-front.framework.team/paintings?_limit=12&_page=1&created_gte=${yearGte}&created_lte=${yearLte}`
+      )
+      .then((res) => {
+        setCards(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className={styles.search}>
@@ -71,7 +97,12 @@ const Search = () => {
         placeholder='Location'
         onChange={handleChangeLocation}
       />
-      <InputYears />
+      <InputYears
+        defaultValueGte={yearGte}
+        defaultValueLte={yearLte}
+        onChangeGte={handleChangeInputGte}
+        onChangeLte={handleChangeInputLte}
+      />
     </div>
   );
 };

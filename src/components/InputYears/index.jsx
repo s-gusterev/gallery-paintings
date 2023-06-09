@@ -1,6 +1,12 @@
 import styles from './InputYears.module.css';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
-const InputYears = () => {
+const InputYears = ({
+  onChangeGte,
+  onChangeLte,
+  defaultValueGte,
+  defaultValueLte,
+}) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -25,6 +31,8 @@ const InputYears = () => {
           min='1000'
           max='2023'
           maxLength='4'
+          defaultValue={defaultValueGte}
+          onChange={onChangeGte}
         />
         <div className={styles.line}></div>
         <input
@@ -35,6 +43,8 @@ const InputYears = () => {
           min='1000'
           max='2023'
           maxLength='4'
+          defaultValue={defaultValueLte}
+          onChange={onChangeLte}
         />
       </div>
       <svg
@@ -51,6 +61,13 @@ const InputYears = () => {
       </svg>
     </div>
   );
+};
+
+InputYears.propTypes = {
+  onChangeGte: PropTypes.func.isRequired,
+  onChangeLte: PropTypes.func.isRequired,
+  defaultValueGte: PropTypes.string.isRequired,
+  defaultValueLte: PropTypes.string.isRequired,
 };
 
 export default InputYears;

@@ -1,6 +1,7 @@
 .app {
   background-color: var(--color-primary);
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  height: 100vh;
 }
 .container {
   max-width: 1160px;
