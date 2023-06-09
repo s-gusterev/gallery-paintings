@@ -13,6 +13,7 @@ const Search = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [yearGte, setYearGte] = useState('0');
   const [yearLte, setYearLte] = useState('2023');
+  const [name, setName] = useState('');
 
   const handleChangeAuthor = (selectedOption) => {
     setSelectedAuthor(selectedOption.value);
@@ -84,9 +85,23 @@ const Search = () => {
       });
   };
 
+  const handleChangeName = async (event) => {
+    setName(event.target.value);
+    await axios
+      .get(
+        `https://test-front.framework.team/paintings?_limit=12&_page=1&q=${name}`
+      )
+      .then((res) => {
+        setCards(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className={styles.search}>
-      <Input type='text' placeholder='Name' />
+      <Input type='text' placeholder='Name' onChange={handleChangeName} />
       <Selected
         options={authors}
         placeholder='Author'
