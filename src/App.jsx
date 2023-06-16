@@ -1,6 +1,6 @@
 import styles from './App.module.css';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ThemeContext from './contexts/ThemeContext';
 import CardsContext from './contexts/CardsContext';
 import Header from './components/Header';
@@ -12,30 +12,50 @@ function App() {
   const [cards, setCards] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [filterParams, setFilterParams] = useState({});
 
-  console.log(cards);
-
-  useEffect(() => {
-    const getPaintings = async () => {
+  const fetchData = useCallback(
+    async (page, filters) => {
+      let url = `https://test-front.framework.team/paintings?_limit=12&_page=${page}`;
+      if (Object.keys(filterParams).length !== 0) {
+        const params = new URLSearchParams(filters);
+        url += `&${params}`;
+      }
       await axios
-        .get(
-          'https://test-front.framework.team/paintings?_limit=12&_page=1'
-          // 'https://test-front.framework.team/paintings?_limit=12&_page=1&authorId=1'
-        )
+        .get(url)
         .then((res) => {
-          // console.log(res.data);
           setCards(res.data);
+          const totalCountHeader = res.headers['x-total-count'];
+          const total = Math.ceil(totalCountHeader / 12);
+          setTotalPages(total);
         })
         .catch((err) => {
           console.log(err);
         });
-    };
+    },
+    [filterParams]
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleFilter = useCallback(
+    (filters) => {
+      setFilterParams(filters);
+      setCurrentPage(1);
+    },
+    [setFilterParams]
+  );
+
+  useEffect(() => {
     const getAuthors = async () => {
       const arr = [];
       await axios
         .get('https://test-front.framework.team/authors')
         .then((res) => {
-          // console.log(res.data);
           let result = res.data;
           result.map((author) => {
             return arr.push({ value: author.id, label: author.name });
@@ -52,7 +72,6 @@ function App() {
       await axios
         .get('https://test-front.framework.team/locations')
         .then((res) => {
-          // console.log(res.data);
           let result = res.data;
           result.map((location) => {
             return arr.push({ value: location.id, label: location.location });
@@ -65,17 +84,37 @@ function App() {
     };
     getAuthors();
     getLocation();
-    getPaintings();
+    setFilterParams({});
   }, []);
+
+  useEffect(() => {
+    fetchData(currentPage, filterParams);
+  }, [currentPage, filterParams, fetchData]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <CardsContext.Provider value={{ cards, setCards, locations, authors }}>
+      <CardsContext.Provider
+        value={{
+          cards,
+          setCards,
+          locations,
+          authors,
+        }}
+      >
         <div className={styles.app} id={theme}>
           <div className={styles.container}>
             <Header />
-            <Main />
-            <Pagination />
+            <Main
+              onFilterAuthor={handleFilter}
+              onFilterLocation={handleFilter}
+              onFilterName={handleFilter}
+              onFilterYear={handleFilter}
+            />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
       </CardsContext.Provider>

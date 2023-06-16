@@ -1,8 +1,43 @@
 import styles from './Pagination.module.css';
-const Pagination = () => {
+import PropTypes from 'prop-types';
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  const pageNumbers = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1
+  );
+
+  const goToPage = (page) => {
+    onPageChange(page);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      goToPage(currentPage - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      goToPage(currentPage + 1);
+    }
+  };
+
+  const goToFirstPage = () => {
+    goToPage(1);
+  };
+
+  const goToLastPage = () => {
+    goToPage(totalPages);
+  };
+
   return (
     <div className={styles.pagination}>
-      <button type='button' className={styles.buttonStart} disabled>
+      <button
+        type='button'
+        className={styles.buttonStart}
+        onClick={goToFirstPage}
+        disabled={currentPage === 1}
+      >
         <svg
           width='14'
           height='13'
@@ -16,7 +51,12 @@ const Pagination = () => {
           />
         </svg>
       </button>
-      <button type='button' className={styles.buttonLeft} disabled>
+      <button
+        type='button'
+        className={styles.buttonLeft}
+        onClick={goToPreviousPage}
+        disabled={currentPage === 1}
+      >
         <svg
           width='9'
           height='13'
@@ -30,19 +70,25 @@ const Pagination = () => {
           />
         </svg>
       </button>
+
+      {pageNumbers.map((pageNumber) => (
+        <button
+          type='button'
+          className={styles.buttonNumber}
+          key={pageNumber}
+          onClick={() => goToPage(pageNumber)}
+          disabled={pageNumber === currentPage}
+        >
+          {pageNumber}
+        </button>
+      ))}
+
       <button
         type='button'
-        className={`${styles.buttonNumber} ${styles.buttonNumberActive}`}
+        className={styles.buttonRight}
+        onClick={goToNextPage}
+        disabled={currentPage === totalPages}
       >
-        1
-      </button>
-      <button type='button' className={styles.buttonNumber}>
-        2
-      </button>
-      <button type='button' className={styles.buttonNumber}>
-        3
-      </button>
-      <button type='button' className={styles.buttonRight}>
         <svg
           width='9'
           height='13'
@@ -56,7 +102,12 @@ const Pagination = () => {
           />
         </svg>
       </button>
-      <button type='button' className={styles.buttonEnd}>
+      <button
+        type='button'
+        className={styles.buttonEnd}
+        onClick={goToLastPage}
+        disabled={currentPage === totalPages}
+      >
         <svg
           width='14'
           height='13'
@@ -72,6 +123,12 @@ const Pagination = () => {
       </button>
     </div>
   );
+};
+
+Pagination.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
 };
 
 export default Pagination;
