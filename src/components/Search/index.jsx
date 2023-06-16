@@ -1,13 +1,18 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useCallback } from 'react';
 import styles from './Search.module.css';
 import Input from '../Input';
 import Selected from '../Selected';
 import InputYears from '../InputYears';
 import CardsContext from '../../contexts/CardsContext';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
-const Search = () => {
-  const { locations, authors, setCards } = useContext(CardsContext);
+const Search = ({
+  onFilterAuthor,
+  onFilterLocation,
+  onFilterName,
+  onFilterYear,
+}) => {
+  const { locations, authors } = useContext(CardsContext);
 
   const [selectedAuthor, setSelectedAuthor] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -19,107 +24,90 @@ const Search = () => {
     setSelectedAuthor(selectedOption.value);
   };
 
+  const handleFiltereAuthor = useCallback(() => {
+    const filters = { authorId: selectedAuthor };
+    onFilterAuthor(filters);
+  }, [selectedAuthor, onFilterAuthor]);
+
+  const handleFiltereLocation = useCallback(() => {
+    const filters = { locationId: selectedLocation };
+    onFilterLocation(filters);
+  }, [selectedLocation, onFilterLocation]);
+
+  const handleFiltereName = useCallback(() => {
+    const filters = { q: name };
+    onFilterName(filters);
+  }, [name, onFilterName]);
+
+  const handleFiltereYear = useCallback(() => {
+    const filters = { created_gte: yearGte, created_lte: yearLte };
+    onFilterYear(filters);
+  }, [onFilterYear, yearGte, yearLte]);
+
+  useEffect(() => {
+    handleFiltereAuthor();
+  }, [handleFiltereAuthor]);
+
+  useEffect(() => {
+    handleFiltereLocation();
+  }, [handleFiltereLocation]);
+
+  useEffect(() => {
+    handleFiltereName();
+  }, [handleFiltereName]);
+
+  useEffect(() => {
+    handleFiltereYear();
+  }, [handleFiltereYear]);
+
   const handleChangeLocation = (selectedOption) => {
     setSelectedLocation(selectedOption.value);
   };
 
-  useEffect(() => {
-    const getPaintingsAuthor = async () => {
-      await axios
-        .get(
-          `https://test-front.framework.team/paintings?_limit=12&_page=1&authorId=${selectedAuthor}`
-        )
-        .then((res) => {
-          setCards(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
-    getPaintingsAuthor();
-  }, [selectedAuthor, setCards]);
-
-  useEffect(() => {
-    const getPaintingsLocation = async () => {
-      await axios
-        .get(
-          `https://test-front.framework.team/paintings?_limit=12&_page=1&locationId=${selectedLocation}`
-        )
-        .then((res) => {
-          setCards(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
-    getPaintingsLocation();
-  }, [selectedLocation, setCards]);
-
-  const handleChangeInputGte = async (event) => {
+  const handleChangeInputGte = (event) => {
     setYearGte(event.target.value);
-    await axios
-      .get(
-        `https://test-front.framework.team/paintings?_limit=12&_page=1&created_gte=${yearGte}&created_lte=${yearLte}`
-      )
-      .then((res) => {
-        setCards(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
-  const handleChangeInputLte = async (event) => {
+  const handleChangeInputLte = (event) => {
     setYearLte(event.target.value);
-    await axios
-      .get(
-        `https://test-front.framework.team/paintings?_limit=12&_page=1&created_gte=${yearGte}&created_lte=${yearLte}`
-      )
-      .then((res) => {
-        setCards(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
-  const handleChangeName = async (event) => {
+  const handleChangeName = (event) => {
     setName(event.target.value);
-    await axios
-      .get(
-        `https://test-front.framework.team/paintings?_limit=12&_page=1&q=${name}`
-      )
-      .then((res) => {
-        setCards(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   return (
     <div className={styles.search}>
-      <Input type='text' placeholder='Name' onChange={handleChangeName} />
+      <Input
+        type='text'
+        placeholder='Name'
+        onChange={(e) => handleChangeName(e)}
+      />
       <Selected
         options={authors}
         placeholder='Author'
-        onChange={handleChangeAuthor}
+        onChange={(e) => handleChangeAuthor(e)}
       />
       <Selected
         options={locations}
         placeholder='Location'
-        onChange={handleChangeLocation}
+        onChange={(e) => handleChangeLocation(e)}
       />
       <InputYears
         defaultValueGte={yearGte}
         defaultValueLte={yearLte}
-        onChangeGte={handleChangeInputGte}
-        onChangeLte={handleChangeInputLte}
+        onChangeGte={(e) => handleChangeInputGte(e)}
+        onChangeLte={(e) => handleChangeInputLte(e)}
       />
     </div>
   );
+};
+
+Search.propTypes = {
+  onFilterAuthor: PropTypes.func.isRequired,
+  onFilterLocation: PropTypes.func.isRequired,
+  onFilterName: PropTypes.func.isRequired,
+  onFilterYear: PropTypes.func.isRequired,
 };
 
 export default Search;
