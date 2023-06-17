@@ -1,4 +1,5 @@
 import styles from './Main.module.css';
+import { AnimatePresence } from 'framer-motion';
 import Search from '../Search';
 import Card from '../Card';
 import { useContext } from 'react';
@@ -22,20 +23,28 @@ const Main = ({
         onFilterYear={onFilterYear}
       />
       <div className={styles.grid}>
-        {cards?.map(({ id, imageUrl, name, locationId, authorId, created }) => {
-          const author = authors.find((item) => item.value === authorId);
-          const location = locations.find((item) => item.value === locationId);
-          return (
-            <Card
-              key={id}
-              image={imageUrl}
-              title={name}
-              author={author.label}
-              location={location.label}
-              created={created}
-            />
-          );
-        })}
+        {cards && (
+          <AnimatePresence initial={false}>
+            {cards?.map(
+              ({ id, imageUrl, name, locationId, authorId, created }) => {
+                const author = authors.find((item) => item.value === authorId);
+                const location = locations.find(
+                  (item) => item.value === locationId
+                );
+                return (
+                  <Card
+                    key={id}
+                    image={imageUrl}
+                    title={name}
+                    author={author.label}
+                    location={location.label}
+                    created={created}
+                  />
+                );
+              }
+            )}
+          </AnimatePresence>
+        )}
       </div>
     </main>
   );
