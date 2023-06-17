@@ -57,6 +57,10 @@
   visibility: visible;
 }
 
+.inputsContainerOpen ~ svg {
+  transform: rotate(180deg);
+}
+
 .input {
   width: 95px;
   height: 45px;
