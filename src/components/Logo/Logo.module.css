@@ -4,4 +4,9 @@
   background-image: url(../../assets/logo.svg);
   background-repeat: no-repeat;
   background-size: contain;
+  transition: opacity 300ms ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
 }

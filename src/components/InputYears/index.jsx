@@ -1,12 +1,7 @@
 import styles from './InputYears.module.css';
 import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
-const InputYears = ({
-  onChangeGte,
-  onChangeLte,
-  defaultValueGte,
-  defaultValueLte,
-}) => {
+const InputYears = ({ onChangeGte, onChangeLte }) => {
   const [open, setOpen] = useState(false);
 
   const ref = useRef();
@@ -48,7 +43,6 @@ const InputYears = ({
           min='1000'
           max='2023'
           maxLength='4'
-          defaultValue={defaultValueGte}
           onChange={onChangeGte}
         />
         <div className={styles.line}></div>
@@ -60,7 +54,6 @@ const InputYears = ({
           min='1000'
           max='2023'
           maxLength='4'
-          defaultValue={defaultValueLte}
           onChange={onChangeLte}
         />
       </div>
@@ -83,8 +76,6 @@ const InputYears = ({
 InputYears.propTypes = {
   onChangeGte: PropTypes.func.isRequired,
   onChangeLte: PropTypes.func.isRequired,
-  defaultValueGte: PropTypes.string.isRequired,
-  defaultValueLte: PropTypes.string.isRequired,
 };
 
 export default InputYears;

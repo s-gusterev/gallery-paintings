@@ -7,8 +7,13 @@
   height: 20px;
   padding: 0;
   cursor: pointer;
+  transition: opacity 300ms ease-in-out;
 }
 
 .button svg path {
   fill: var(--color-secondary);
+}
+
+.button:hover {
+  opacity: 0.8;
 }
