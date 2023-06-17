@@ -1,6 +1,6 @@
 import styles from './InputYears.module.css';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 const InputYears = ({
   onChangeGte,
   onChangeLte,
@@ -9,8 +9,25 @@ const InputYears = ({
 }) => {
   const [open, setOpen] = useState(false);
 
+  const ref = useRef();
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (open && ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', checkIfClickedOutside);
+    };
+  }, [open]);
+
   return (
     <div
+      ref={ref}
       className={open ? `${styles.search} ${styles.searchOpen}` : styles.search}
     >
       <div className={styles.titleContainer} onClick={() => setOpen(!open)}>
