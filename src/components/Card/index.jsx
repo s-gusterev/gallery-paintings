@@ -1,9 +1,16 @@
 import styles from './Card.module.css';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
 const Card = ({ image, title, created, location, author }) => {
   return (
-    <article className={styles.card}>
+    <motion.article
+      className={styles.card}
+      initial={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className={styles.imageContainer}>
         <img
           className={styles.image}
@@ -23,7 +30,7 @@ const Card = ({ image, title, created, location, author }) => {
           Location: <span className={styles.span}>{location}</span>
         </p>
       </div>
-    </article>
+    </motion.article>
   );
 };
 
