@@ -21,16 +21,22 @@ const Search = ({
   const [name, setName] = useState('');
 
   const handleChangeAuthor = (selectedOption) => {
-    setSelectedAuthor(selectedOption.value);
+    setSelectedAuthor(selectedOption?.value);
   };
 
   const handleFiltereAuthor = useCallback(() => {
-    const filters = { authorId: selectedAuthor };
+    let filters = { authorId: selectedAuthor };
+    if (selectedAuthor === undefined) {
+      filters = {};
+    }
     onFilterAuthor(filters);
   }, [selectedAuthor, onFilterAuthor]);
 
   const handleFiltereLocation = useCallback(() => {
-    const filters = { locationId: selectedLocation };
+    let filters = { locationId: selectedLocation };
+    if (selectedLocation === undefined) {
+      filters = {};
+    }
     onFilterLocation(filters);
   }, [selectedLocation, onFilterLocation]);
 
@@ -61,7 +67,7 @@ const Search = ({
   }, [handleFiltereYear]);
 
   const handleChangeLocation = (selectedOption) => {
-    setSelectedLocation(selectedOption.value);
+    setSelectedLocation(selectedOption?.value);
   };
 
   const handleChangeInputGte = (event) => {
@@ -83,15 +89,18 @@ const Search = ({
         placeholder='Name'
         onChange={(e) => handleChangeName(e)}
       />
+
       <Selected
         options={authors}
         placeholder='Author'
         onChange={(e) => handleChangeAuthor(e)}
+        defaultValue={''}
       />
       <Selected
         options={locations}
         placeholder='Location'
         onChange={(e) => handleChangeLocation(e)}
+        defaultValue={''}
       />
       <InputYears
         defaultValueGte={yearGte}

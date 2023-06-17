@@ -91,6 +91,10 @@ function App() {
     fetchData(currentPage, filterParams);
   }, [currentPage, filterParams, fetchData]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [cards]);
+
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <CardsContext.Provider
