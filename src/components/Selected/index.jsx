@@ -89,6 +89,21 @@ const Selected = ({ options, placeholder, onChange }) => {
         zIndex: 9999,
         display: menuIsOpen ? 'block' : 'none',
       },
+      '@media screen and (max-width: 1090px)': {
+        width: '220px',
+      },
+      '@media screen and (max-width: 978px)': {
+        width: '190px',
+      },
+      '@media screen and (max-width: 885px)': {
+        width: '160px',
+      },
+      '@media screen and (max-width: 740px)': {
+        width: '250px',
+      },
+      '@media screen and (max-width: 560px)': {
+        width: '280px',
+      },
     }),
     singleValue: (defaultStyles) => ({
       ...defaultStyles,
@@ -103,6 +118,9 @@ const Selected = ({ options, placeholder, onChange }) => {
       fontSize: '13px',
       fontWeight: '400',
       lineHeight: '15px',
+      '@media screen and (max-width: 560px)': {
+        fontSize: '14px',
+      },
     }),
     valueContainer: (defaultStyles) => ({
       ...defaultStyles,

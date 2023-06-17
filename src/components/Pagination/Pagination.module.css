@@ -95,3 +95,10 @@
 .buttonRight {
   border-left: 0;
 }
+
+@media screen and (max-width: 387px) {
+  .pagination {
+    width: 280px;
+    margin: 0 auto;
+  }
+}

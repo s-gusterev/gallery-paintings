@@ -7,6 +7,7 @@
   box-sizing: border-box;
   position: relative;
   transition: height 300ms ease-in-out;
+  flex-shrink: 0;
 }
 
 .search svg {
@@ -25,17 +26,6 @@
   border-bottom-right-radius: 0;
   border-bottom: 0;
 }
-
-/* .search::before {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 6px;
-  background-image: url(../../assets/input-indicator.svg);
-  background-size: contain;
-  right: 15px;
-  top: 19px;
-} */
 
 .title {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
@@ -86,4 +76,52 @@
   width: 12px;
   height: 1px;
   background-color: var(--color-secondary);
+}
+
+@media screen and (max-width: 1090px) {
+  .search,
+  .inputsContainer {
+    width: 220px;
+  }
+}
+
+@media screen and (max-width: 978px) {
+  .search,
+  .inputsContainer {
+    width: 190px;
+  }
+}
+
+@media screen and (max-width: 885px) {
+  .search,
+  .inputsContainer {
+    width: 160px;
+  }
+}
+
+@media screen and (max-width: 885px) {
+  .inputsContainer {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .search,
+  .inputsContainer {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .search,
+  .inputsContainer {
+    width: 280px;
+  }
+  .input {
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
 }
