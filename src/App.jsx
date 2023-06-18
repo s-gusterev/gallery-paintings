@@ -1,4 +1,3 @@
-import styles from './App.module.css';
 import axios from 'axios';
 import { useState, useEffect, useCallback } from 'react';
 import ThemeContext from './contexts/ThemeContext';
@@ -6,6 +5,9 @@ import CardsContext from './contexts/CardsContext';
 import Header from './components/Header';
 import Main from './components/Main';
 import Pagination from './components/Pagination';
+
+import { AppContainer, Container } from './App.styled';
+
 function App() {
   const [theme, setTheme] = useState('dark');
 
@@ -105,8 +107,8 @@ function App() {
           authors,
         }}
       >
-        <div className={styles.app} id={theme}>
-          <div className={styles.container}>
+        <AppContainer id={theme}>
+          <Container>
             <Header />
             <Main
               onFilterAuthor={handleFilter}
@@ -119,8 +121,8 @@ function App() {
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />
-          </div>
-        </div>
+          </Container>
+        </AppContainer>
       </CardsContext.Provider>
     </ThemeContext.Provider>
   );
