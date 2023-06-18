@@ -217,19 +217,17 @@ const Selected = ({ options, placeholder, onChange, defaultValue }) => {
     }),
   };
   return (
-    <div className={styles.select}>
-      <Select
-        maxMenuHeight={300}
-        options={options}
-        styles={customStyles}
-        components={{ DropdownIndicator, ClearIndicator }}
-        isSearchable={false}
-        placeholder={placeholder}
-        onChange={onChange}
-        isClearable={true}
-        defaultValue={defaultValue}
-      />
-    </div>
+    <Select
+      maxMenuHeight={300}
+      options={options}
+      styles={customStyles}
+      components={{ DropdownIndicator, ClearIndicator }}
+      isSearchable={false}
+      placeholder={placeholder}
+      onChange={onChange}
+      isClearable={true}
+      defaultValue={defaultValue}
+    />
   );
 };
 
