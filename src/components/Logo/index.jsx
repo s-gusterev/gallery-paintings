@@ -1,7 +1,6 @@
-import style from './Logo.module.css';
-
+import { Link } from './Logo.styled';
 const Logo = () => {
-  return <a href='/gallery-paintings/' className={style.logo}></a>;
+  return <Link></Link>;
 };
 
 export default Logo;

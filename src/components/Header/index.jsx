@@ -1,13 +1,13 @@
-import styles from './Header.module.css';
 import Logo from '../Logo';
 import ToogleTheme from '../ToogleTheme';
+import { Wrapper } from './Header.styled';
 
 const Header = () => {
   return (
-    <header className={styles.header}>
+    <Wrapper>
       <Logo />
       <ToogleTheme />
-    </header>
+    </Wrapper>
   );
 };
 
