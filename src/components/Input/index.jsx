@@ -1,14 +1,9 @@
 import PropTypes from 'prop-types';
-import styles from './Input.module.css';
+import { InputSearh } from './Input.styled';
 
 const Input = ({ type, placeholder, onChange }) => {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className={styles.input}
-      onChange={onChange}
-    />
+    <InputSearh type={type} placeholder={placeholder} onChange={onChange} />
   );
 };
 

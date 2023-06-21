@@ -1,6 +1,13 @@
-import styles from './InputYears.module.css';
 import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
+import {
+  Search,
+  TitleContainer,
+  Title,
+  InputsContainer,
+  InputCustom,
+  Line,
+} from './InputYears.styled';
 const InputYears = ({ onChangeGte, onChangeLte }) => {
   const [open, setOpen] = useState(false);
 
@@ -21,22 +28,12 @@ const InputYears = ({ onChangeGte, onChangeLte }) => {
   }, [open]);
 
   return (
-    <div
-      ref={ref}
-      className={open ? `${styles.search} ${styles.searchOpen}` : styles.search}
-    >
-      <div className={styles.titleContainer} onClick={() => setOpen(!open)}>
-        <span className={styles.title}>Created</span>
-      </div>
-      <div
-        className={
-          open
-            ? `${styles.inputsContainer} ${styles.inputsContainerOpen}`
-            : styles.inputsContainer
-        }
-      >
-        <input
-          className={styles.input}
+    <Search open={open} ref={ref}>
+      <TitleContainer onClick={() => setOpen(!open)}>
+        <Title>Created</Title>
+      </TitleContainer>
+      <InputsContainer open={open}>
+        <InputCustom
           type='number'
           name='from'
           placeholder='from'
@@ -45,9 +42,8 @@ const InputYears = ({ onChangeGte, onChangeLte }) => {
           maxLength='4'
           onChange={onChangeGte}
         />
-        <div className={styles.line}></div>
-        <input
-          className={styles.input}
+        <Line></Line>
+        <InputCustom
           type='number'
           name='before'
           placeholder='before'
@@ -56,7 +52,7 @@ const InputYears = ({ onChangeGte, onChangeLte }) => {
           maxLength='4'
           onChange={onChangeLte}
         />
-      </div>
+      </InputsContainer>
       <svg
         width='10'
         height='6'
@@ -69,7 +65,7 @@ const InputYears = ({ onChangeGte, onChangeLte }) => {
           fill='var(--color-secondary-100)'
         />
       </svg>
-    </div>
+    </Search>
   );
 };
 

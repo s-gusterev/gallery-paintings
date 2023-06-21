@@ -85,7 +85,7 @@ const Search = ({
   return (
     <div className={styles.search}>
       <Input
-        type='text'
+        type='search'
         placeholder='Name'
         onChange={(e) => handleChangeName(e)}
       />
