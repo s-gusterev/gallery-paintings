@@ -1,5 +1,13 @@
-import styles from './Pagination.module.css';
+// import styles from './Pagination.module.css';
 import PropTypes from 'prop-types';
+import {
+  WrapperPagination,
+  ButtonStart,
+  ButtonEnd,
+  ButtonNumber,
+  ButtonLeft,
+  ButtonRight,
+} from './Pagination.style';
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = Array.from(
     { length: totalPages },
@@ -31,10 +39,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <div className={styles.pagination}>
-      <button
+    <WrapperPagination>
+      <ButtonStart
         type='button'
-        className={styles.buttonStart}
+        // className={styles.buttonStart}
         onClick={goToFirstPage}
         disabled={currentPage === 1}
       >
@@ -50,10 +58,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             fill='white'
           />
         </svg>
-      </button>
-      <button
+      </ButtonStart>
+      <ButtonLeft
         type='button'
-        className={styles.buttonLeft}
+        // className={styles.buttonLeft}
         onClick={goToPreviousPage}
         disabled={currentPage === 1}
       >
@@ -69,23 +77,23 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             fill='white'
           />
         </svg>
-      </button>
+      </ButtonLeft>
 
       {pageNumbers.map((pageNumber) => (
-        <button
+        <ButtonNumber
           type='button'
-          className={styles.buttonNumber}
+          // className={styles.buttonNumber}
           key={pageNumber}
           onClick={() => goToPage(pageNumber)}
           disabled={pageNumber === currentPage}
         >
           {pageNumber}
-        </button>
+        </ButtonNumber>
       ))}
 
-      <button
+      <ButtonRight
         type='button'
-        className={styles.buttonRight}
+        // className={styles.buttonRight}
         onClick={goToNextPage}
         disabled={currentPage === totalPages}
       >
@@ -101,10 +109,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             fill='white'
           />
         </svg>
-      </button>
-      <button
+      </ButtonRight>
+      <ButtonEnd
         type='button'
-        className={styles.buttonEnd}
+        // className={styles.buttonEnd}
         onClick={goToLastPage}
         disabled={currentPage === totalPages}
       >
@@ -120,8 +128,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             fill='white'
           />
         </svg>
-      </button>
-    </div>
+      </ButtonEnd>
+    </WrapperPagination>
   );
 };
 
