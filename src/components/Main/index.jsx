@@ -1,10 +1,10 @@
-import styles from './Main.module.css';
 import { AnimatePresence } from 'framer-motion';
 import Search from '../Search';
 import Card from '../Card';
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import CardsContext from '../../contexts/CardsContext';
+import { Wrapper, Grid } from './Main.styled';
 
 const Main = ({
   onFilterAuthor,
@@ -15,14 +15,14 @@ const Main = ({
   const { cards, locations, authors } = useContext(CardsContext);
 
   return (
-    <main className={styles.main}>
+    <Wrapper>
       <Search
         onFilterAuthor={onFilterAuthor}
         onFilterLocation={onFilterLocation}
         onFilterName={onFilterName}
         onFilterYear={onFilterYear}
       />
-      <div className={styles.grid}>
+      <Grid>
         {cards && (
           <AnimatePresence initial={false}>
             {cards?.map(
@@ -45,8 +45,8 @@ const Main = ({
             )}
           </AnimatePresence>
         )}
-      </div>
-    </main>
+      </Grid>
+    </Wrapper>
   );
 };
 
