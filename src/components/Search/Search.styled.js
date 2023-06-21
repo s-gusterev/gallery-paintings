@@ -1,12 +1,12 @@
-.search {
+import { styled } from 'styled-components';
+
+export const WrapperSearch = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
-}
 
-@media screen and (max-width: 740px) {
-  .search {
+  @media (max-width: 740px) {
     flex-wrap: wrap;
     justify-content: center;
   }
-}
+`;

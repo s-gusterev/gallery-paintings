@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useCallback } from 'react';
-import styles from './Search.module.css';
+import { WrapperSearch } from './Search.styled';
 import Input from '../Input';
 import Selected from '../Selected';
 import InputYears from '../InputYears';
@@ -83,7 +83,7 @@ const Search = ({
   };
 
   return (
-    <div className={styles.search}>
+    <WrapperSearch>
       <Input
         type='search'
         placeholder='Name'
@@ -108,7 +108,7 @@ const Search = ({
         onChangeGte={(e) => handleChangeInputGte(e)}
         onChangeLte={(e) => handleChangeInputLte(e)}
       />
-    </div>
+    </WrapperSearch>
   );
 };
 

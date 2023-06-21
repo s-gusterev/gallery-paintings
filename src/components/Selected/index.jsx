@@ -1,4 +1,3 @@
-import styles from './Selected.module.css';
 import PropTypes from 'prop-types';
 import Select, { components } from 'react-select';
 
